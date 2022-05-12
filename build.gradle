@@ -4,11 +4,10 @@ plugins {
     id 'java'
 }
 
-jar {
-    manifest {
-        attributes 'Main-Class': 'ru.krylov.myfirstkrylbot.MyFirstKrylBotApplication'
-    }
+springBoot {
+    mainClass = 'ru.krylov.myfirstkrylbot.MyFirstKrylBotApplication'
 }
+
 
 group = 'ru.krylov'
 version = '0.0.1-SNAPSHOT'
