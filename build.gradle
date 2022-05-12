@@ -6,9 +6,7 @@ plugins {
 
 jar {
     manifest {
-        attributes(
-                'Main-Class': 'ru.krylov.myfirstkrylbot.MyFirstKrylBotApplication'
-        )
+        attributes 'Main-Class': 'ru.krylov.myfirstkrylbot.MyFirstKrylBotApplication'
     }
 }
 
