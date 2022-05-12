@@ -1,1 +1,1 @@
-web: java -jar target/MyFirstKrylBot-1.0.jar
+web: java -jar build/libs/MyFirstKrylBot-0.0.1-SNAPSHOT.jar
