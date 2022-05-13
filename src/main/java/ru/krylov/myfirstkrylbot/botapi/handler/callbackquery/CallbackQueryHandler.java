@@ -70,7 +70,7 @@ public class CallbackQueryHandler {
 //                callBackAnswer = replyMessageService.getReplyMessage(String.valueOf(userId), "reply.freeMaterials");
                 callBackAnswer = new SendMessage(String.valueOf(userId), "");
                 bot.sendMessage(String.valueOf(userId), "Отправляем файл, подождите");
-                bot.sendDocument(String.valueOf(userId), "", "Развиваем интеллект_7 игр.pdf");
+                bot.sendDocument(String.valueOf(userId), "", "mindExercises_7games.pdf");
                 userDataCache.setUsersCurrentBotState(userId, BotState.SHOW_MAIN_MENU);
                 break;
             case "buttonSocialMedia":
