@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.util.ResourceUtils;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
@@ -17,6 +19,9 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.starter.SpringWebhookBot;
 import ru.krylov.myfirstkrylbot.botapi.TelegramFacade;
+
+import java.io.File;
+import java.io.InputStream;
 
 @Getter
 @Setter
@@ -68,9 +73,11 @@ public class TelegramBot extends SpringWebhookBot {
         SendDocument sendDocument = new SendDocument();
         sendDocument.setChatId(chatId);
         sendDocument.setCaption(docCaption);
-
-        InputFile inputFile = new InputFile(ResourceUtils
-                .getFile("classpath:\\static\\documents\\" + docInputFileName), docInputFileName);
+//        InputFile inputFile = new InputFile(ResourceUtils
+//                .getFile("classpath:\\static\\documents\\" + docInputFileName), docInputFileName);
+        ClassPathResource classPathResource = new ClassPathResource("classpath:\\static\\documents\\" + docInputFileName);
+        InputStream inputStream = classPathResource.getInputStream();
+        InputFile inputFile = new InputFile(inputStream, docInputFileName);
         sendDocument.setDocument(inputFile);
 
         execute(sendDocument);
@@ -79,8 +86,11 @@ public class TelegramBot extends SpringWebhookBot {
     @SneakyThrows
     public void sendImage(String chatId, String imgCaption, String imgFileName) {
         SendPhoto sendPhoto = new SendPhoto();
-        InputFile inputFile = new InputFile(ResourceUtils
-                .getFile("classpath:\\static\\images\\" + imgFileName), imgFileName);
+//        InputFile inputFile = new InputFile(ResourceUtils
+//                .getFile("classpath:\\static\\images\\" + imgFileName), imgFileName);
+        ClassPathResource classPathResource = new ClassPathResource("classpath:\\static\\images\\" + imgFileName);
+        InputStream inputStream = classPathResource.getInputStream();
+        InputFile inputFile = new InputFile(inputStream, imgFileName);
         sendPhoto.setChatId(chatId);
         sendPhoto.setCaption(imgCaption);
         sendPhoto.setParseMode("HTML");
